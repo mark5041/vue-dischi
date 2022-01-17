@@ -1,13 +1,15 @@
 <template>
     
     <main>
-        <div class="container">
+        <div v-if="cards" class="container">
             <div class="row">
-                <div class="card">
-                    <img src="https://picsum.photos/id/684/600/400" alt="">
-                    <h1>New Jersey</h1>
-                    <h3>New Jersey</h3>
-                </div>
+                <Card v-for="(element, index) in cards" :key="index"
+                    :img="element.poster"
+                    :alt="element.title"
+                    :title="element.title"
+                    :author="element.author"
+                    :date="element.year"
+                />
             </div>
         </div>
     </main>
@@ -15,13 +17,33 @@
 </template>
 
 <script>
+import Card from './Card.vue'
+import axios from 'axios'
+
 export default {
-    name: 'Main',
-    data(){
-        return {
-            
-        }
-    }
+  name: "Main",
+	components: {
+		Card,
+	},
+	data() {
+		return {
+			cards: null,
+		}
+	},
+	mounted() {
+		this.getCards();
+	},
+	methods: {
+		getCards() {
+			axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+			.then((result) => {
+				this.cards = result.data.response;
+			})
+			.catch((error) => {
+				console.log(error);
+			})
+		}
+	}
 }
 </script>
 
@@ -35,29 +57,10 @@ export default {
 
         .container{
             position: relative;
-            top: 7em;
+            top: 6em;
             .row {
                 column-gap: $card_gap;
                 row-gap: calc($card_gap / 2);
-                .card {
-                    flex-basis: $card_width;
-                    align-items: center;
-                    background-color: $bg_card;
-                    img {
-                        margin: 1em 0;
-                        width: 80%;
-                    }
-                    h1 {
-                        color: $title_color;
-                        font-size: $title_size;
-                    }
-                    h3 {
-                        color: $sub_title_color;
-                        font-size: $sub_title_size;
-                        margin-top: 1.5em;
-                        margin-bottom: 1em;
-                    }
-                }
             }
         }
     }

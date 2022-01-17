@@ -1,19 +1,38 @@
 <template>
-    
+
     <div class="card">
-        <img src="https://picsum.photos/id/684/600/400" alt="">
-        <h1>New Jersey</h1>
-        <h3>New Jersey</h3>
+        <img :src="img" :alt="alt">
+        <h1>{{title}}</h1>
+        <span class="mt-2">{{author}}</span>
+        <span class="mb-4">{{date}}</span>
     </div>
 
 </template>
 
 <script>
-export default {
-    name: 'Main',
-    data(){
+export default {  
+    name: "Card",
+    props: {
+        img: {
+            type: String,
+        },
+        alt: {
+            type: String,
+        },
+        title: {
+            type: String,
+        },
+        author: {
+            type: String,
+        },
+        date: {
+            type: String,
+        },
+        product: Object,
+    },
+    data() {
         return {
-            
+
         }
     }
 }
@@ -22,37 +41,23 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/style.scss";
     
-    main {
-        background-color: $bg_main;
-        height: $main_height;
-        width: 100%;
-
-        .container{
-            position: relative;
-            top: 7em;
-            .row {
-                column-gap: $card_gap;
-                row-gap: calc($card_gap / 2);
-                .card {
-                    flex-basis: $card_width;
-                    align-items: center;
-                    background-color: $bg_card;
-                    img {
-                        margin: 1em 0;
-                        width: 80%;
-                    }
-                    h1 {
-                        color: $title_color;
-                        font-size: $title_size;
-                    }
-                    h3 {
-                        color: $sub_title_color;
-                        font-size: $sub_title_size;
-                        margin-top: 1.5em;
-                        margin-bottom: 1em;
-                    }
-                }
-            }
+    .card {
+        flex-basis: $card_width;
+        align-items: center;
+        background-color: $bg_card;
+        text-align: center;
+        img {
+            margin: 1.3em 0;
+            width: 80%;
+        }
+        h1 {
+            color: $title_color;
+            font-size: $title_size;
+        }
+        span {
+            color: $sub_title_color;
+            font-size: $sub_title_size;
+            line-height: calc($sub_title_size + 5px);
         }
     }
     
