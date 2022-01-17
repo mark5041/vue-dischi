@@ -53,6 +53,7 @@ export default {
         h1 {
             color: $title_color;
             font-size: $title_size;
+            text-transform: uppercase;
         }
         span {
             color: $sub_title_color;
