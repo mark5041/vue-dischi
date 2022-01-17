@@ -1,0 +1,18 @@
+$bg_header: #2e3a46;
+$header_height: 3.8em;
+
+
+$bg_main: #1e2d3b;
+$main_height: calc(100vh - $header_height);
+
+
+$bg_card: $bg_header;
+$card_gap: 2em;
+$card_width: calc(100% / 6 - $card_gap);
+
+
+$title_color: white;
+$title_size: 1.5em;
+
+$sub_title_color: #4f6b7c;
+$sub_title_size: 1em;
