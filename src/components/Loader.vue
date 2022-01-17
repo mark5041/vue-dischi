@@ -24,12 +24,12 @@ export default {
         height: 15em;
         display: block;
         position: absolute;
-        top: 40%;
+        top: 35%;
         left: 45%;
         z-index: 100000;
     }
     .loader-14::after , .loader-14::before {
-    content: '';
+        content: '';
         width : 15em;
         height: 15em;
         border-radius: 50%;
