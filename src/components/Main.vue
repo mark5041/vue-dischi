@@ -2,7 +2,7 @@
     
     <main>
         <Select 
-            :option="CompleteAlbums"
+            :option="genreCollection"
             @filter="GenreSelection($event)"
         />
         <div class="my-container">
@@ -35,6 +35,7 @@ export default {
 		return {
 			CompleteAlbums: null,
             filteredAlbums: null,
+            genreCollection: [],
             selected: "all"
 		}
 	},
@@ -49,13 +50,24 @@ export default {
 			axios.get('https://flynn.boolean.careers/exercises/api/array/music')
 			.then((result) => {
 				this.CompleteAlbums = result.data.response;
-                this.filteredAlbums = this.CompleteAlbums;
+                this.filteredAlbums = result.data.response;
+                this.getGenre(result.data.response);
 			})
 			.catch((error) => {
 				console.log(error);
 			})
 		},
-       GenreSelection(selected) {
+        getGenre(object) 
+        {
+            object.forEach(element => {
+                if(!this.genreCollection.includes(element.genre))
+                {
+                    this.genreCollection.push(element.genre);
+                }
+            });
+        },
+       GenreSelection(selected) 
+       {
             this.selected = selected;
             if (this.selected == "" || this.selected == "all") 
             {
@@ -67,7 +79,7 @@ export default {
                     return element.genre == this.selected;
                 });
             }
-        },
+       },
     },
 }
 </script>

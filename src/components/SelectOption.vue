@@ -2,7 +2,7 @@
 
     <select  v-model="selected" @change="$emit('filter', selected)" name="" id="">
         <option value="all" selected>all</option>
-        <option v-for="(element, index) in category" :key="index" :value="element">{{element}}</option>
+        <option v-for="(element, index) in option" :key="index" :value="element">{{element}}</option>
     </select>
 
 </template>
@@ -11,22 +11,12 @@
 export default {  
     name: "Select",
     props: {
-        option: Object
+        option: Array
     },
     data() {
         return {
-            objects: this.option,
-            category: [],
-            selected: "all"
+            selected: "all",
         }
-    },
-    created() {
-        this.objects.forEach(element => {
-            if(!this.category.includes(element.genre))
-            {
-                this.category.push(element.genre);
-            }
-        });
     },
     methods: {
 
