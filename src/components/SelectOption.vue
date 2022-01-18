@@ -28,10 +28,9 @@ export default {
 @import "../assets/scss/style.scss";
     
 select {
-    position: relative;
-    left: 43.3%;
-    top: 3%;
+    margin-top: 1.5em;
     width: 200px;
+    border: none;
 }
     
 </style>

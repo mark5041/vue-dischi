@@ -1,10 +1,12 @@
 <template>
     
     <main>
-        <Select 
+        <div class="select-section">
+            <Select 
             :option="genreCollection"
             @filter="GenreSelection($event)"
         />
+        </div>
         <div class="my-container">
             <div class="row">
                 <Card v-for="(element, index) in filteredAlbums" :key="index"
@@ -42,9 +44,6 @@ export default {
 	mounted() {
 		this.getCards();
 	},
-    computed() {
-        
-    },
 	methods: {
 		getCards() {
 			axios.get('https://flynn.boolean.careers/exercises/api/array/music')
@@ -91,7 +90,10 @@ export default {
         background-color: $bg_main;
         height: $main_height;
         width: 100%;
-
+        .select-section{
+            display: flex;
+            justify-content: center;
+        }
         .my-container{
             margin: 0 15%;
             .row {
