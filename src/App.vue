@@ -20,7 +20,7 @@ export default {
   },
   data() {
       return {
-          loading: true
+          loading: true,
       }
   },
   mounted() {
@@ -34,4 +34,5 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
 @import "./assets/scss/style.scss";
+
 </style>
