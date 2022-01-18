@@ -1,6 +1,6 @@
 <template>
 
-    <select  name="" id="">
+    <select  v-model="selected" @change="$emit('filter', selected)" name="" id="">
         <option value="all" selected>all</option>
         <option v-for="(element, index) in category" :key="index" :value="element">{{element}}</option>
     </select>
@@ -17,15 +17,19 @@ export default {
         return {
             objects: this.option,
             category: [],
+            selected: "all"
         }
     },
-    mounted() {
+    created() {
         this.objects.forEach(element => {
             if(!this.category.includes(element.genre))
             {
-                this-this.category.push(element.genre);
+                this.category.push(element.genre);
             }
         });
+    },
+    methods: {
+
     }
 }
 </script>

@@ -2,11 +2,12 @@
     
     <main>
         <Select 
-            :option="cards"
+            :option="CompleteAlbums"
+            @filter="GenreSelection($event)"
         />
         <div class="my-container">
             <div class="row">
-                <Card v-for="(element, index) in cards" :key="index"
+                <Card v-for="(element, index) in filteredAlbums" :key="index"
                     :img="element.poster"
                     :alt="element.title"
                     :title="element.title"
@@ -32,24 +33,42 @@ export default {
 	},
 	data() {
 		return {
-			cards: null,
-            selected: null,
+			CompleteAlbums: null,
+            filteredAlbums: null,
+            selected: "all"
 		}
 	},
 	mounted() {
 		this.getCards();
 	},
+    computed() {
+        
+    },
 	methods: {
 		getCards() {
 			axios.get('https://flynn.boolean.careers/exercises/api/array/music')
 			.then((result) => {
-				this.cards = result.data.response;
+				this.CompleteAlbums = result.data.response;
+                this.filteredAlbums = this.CompleteAlbums;
 			})
 			.catch((error) => {
 				console.log(error);
 			})
-		}
-	}
+		},
+       GenreSelection(selected) {
+            this.selected = selected;
+            if (this.selected == "" || this.selected == "all") 
+            {
+                this.filteredAlbums = this.CompleteAlbums;
+            } 
+            else 
+            {
+                this.filteredAlbums = this.CompleteAlbums.filter((element) => {
+                    return element.genre == this.selected;
+                });
+            }
+        },
+    },
 }
 </script>
 
